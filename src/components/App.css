@@ -1,0 +1,51 @@
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  display: inline-block;  
+  height: 80px;
+}
+
+.App-name {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.App-header {
+  text-align: center;
+  background-color: #222;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.open-add-post {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+}
+
+.mdl-button--fab {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 3;
+}
+
+.mdl-button:focus:not(:active) {
+     background-color: rgba(0,0,0,0); 
+}

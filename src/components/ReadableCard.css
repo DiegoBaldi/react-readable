@@ -1,0 +1,85 @@
+.readable-card.mdl-card {
+  margin: 20px;
+  height: 256px;
+  background: #3e4eb8;
+  width: auto;
+}
+.readable-card > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.readable-card > .mdl-card__title {
+  align-items: flex-start;
+  cursor: pointer;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.readable-card > .mdl-card__title > p {
+  font-size: 12px;
+  margin: 0px;
+}
+.readable-card > .mdl-card__title > h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+.readable-card > .mdl-card__title > h4 > span {
+  font-size: 14px;
+  color: #e1e1e1;
+  font-weight: normal;
+}
+.readable-card > .mdl-card__actions {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+}
+.readable-card > .mdl-card__actions > .material-icons {
+  padding-right: 10px;
+}
+.readable-card > .mdl-card__title,
+.readable-card > .mdl-card__actions,
+.readable-card > .mdl-card__actions > .mdl-button {
+  color: #fff;
+}
+.comment-icon {
+  padding-left: 10px !important;
+  padding-right: 0px !important;
+}
+.comment-value {
+  padding-right: 10px !important;
+  padding-left: 5px !important;
+}
+.score {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.upvote {
+  color: green;
+}
+.downvote {
+  color: red;
+}
+.action {
+  cursor: pointer;
+}
+.block {
+  display: block;
+}
+.modal {
+  max-width: 300px;
+  position: absolute;
+  text-align: center;
+  top: 40px;
+  left: 50%;
+  margin-left: -171px;
+  bottom: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+}
+.center-vertically {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
