@@ -7,27 +7,27 @@ The Project is build to showcase an intensive and extensive use of Redux (all-st
 
 2. Start server:
 
-```bash
-nide server
-```
+    ```bash
+    node server
+    ```
 
-with yarn
-```bash
-yarn start
-```
+    with yarn
+    ```bash
+    yarn start
+    ```
 
 3. Clone or Download this repo and run:
 
-```bash
-npm install
-npm start
-```
+    ```bash
+    npm install
+    npm start
+    ```
 
-with yarn
-```bash
-yarn install
-yarn start
-```
+    with yarn
+    ```bash
+    yarn install
+    yarn start
+    ```
 
 ## Challenges
 * All application state is managed by the Redux store. State-based props are mapped from the store rather than stored as component state.
