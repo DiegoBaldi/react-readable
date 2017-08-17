@@ -12,6 +12,7 @@
     "react-loading": "^0.1.4",
     "react-material-select": "^1.2.0",
     "react-modal": "^2.2.2",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10",
     "react-tap-event-plugin": "^2.0.1",
