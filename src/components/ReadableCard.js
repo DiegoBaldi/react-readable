@@ -58,25 +58,25 @@ class ReadableCard extends Component {
 
   upVoteElement = id => {
     if (this.props.cardType === "post") {
-      this.props.upVotePost(id)
+      this.props.upvotePost(id)
     } else {
-      this.props.upVoteComment(id)
+      this.props.upvoteComment(id)
     }
   }
 
   downVoteElement = id => {
     if (this.props.cardType === "post") {
-      this.props.downVotePost(id)
+      this.props.downvotePost(id)
     } else {
-      this.props.downVoteComment(id)
+      this.props.downvoteComment(id)
     }
   }
 
   removeElement = id => {
     if (this.props.cardType === "post") {
-      removePost(id, this.props.element.comments)
+      this.props.removePost(id, this.props.element.comments)
     } else {
-      removeComment(id)
+      this.props.removeComment(id, this.props.element.parentId)
     }
   }
 
@@ -134,15 +134,11 @@ class ReadableCard extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    upVotePost: data => dispatch(upvotePost(data)),
-    downVotePost: data => dispatch(downvotePost(data)),
-    removePost: (id, comments) => dispatch(removePost(id, comments)),
-    upVoteComment: data => dispatch(upvoteComment(data)),
-    downVoteComment: data => dispatch(downvoteComment(data)),
-    removeComment: (id, postId) => dispatch(removeComment(id, postId))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(ReadableCard)
+export default connect(null, {
+  upvotePost,
+  downvotePost,
+  removePost,
+  upvoteComment,
+  downvoteComment,
+  removeComment
+})(ReadableCard)

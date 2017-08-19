@@ -28,10 +28,10 @@ class Category extends Component {
       <div
         className="category-card-image mdl-card mdl-shadow--2dp"
         style={{
-          background: this.getCategoryImg(category.name), cursor: "pointer"
+          background: this.getCategoryImg(category.name),
+          cursor: "pointer"
         }}
-
-         onClick={() => this.props.history.push('/'+ category.path)}
+        onClick={() => this.props.history.push("/" + category.path)}
       >
         <div className="mdl-card__title mdl-card--expand" />
         <div className="mdl-card__actions">

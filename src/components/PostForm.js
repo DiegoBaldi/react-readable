@@ -19,10 +19,9 @@ class PostForm extends Component {
   }
 
   savePost = post => {
-
     console.log(post)
 
-    if (!post.author || !post.title || !post.body || post.category==="") {
+    if (!post.author || !post.title || !post.body || post.category === "") {
       return
     }
 
@@ -86,7 +85,11 @@ class PostForm extends Component {
             Body*
           </label>
         </div>
-        <ReactMaterialSelect defaultValue={ post ? post.category : ""} label="Category" ref="category">
+        <ReactMaterialSelect
+          defaultValue={post ? post.category : ""}
+          label="Category"
+          ref="category"
+        >
           {categories.map(category =>
             <option dataValue={category.name} key={category.name}>
               {category.name}
@@ -126,11 +129,4 @@ function mapStateToProps({ posts, categories }, ownProps) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    addPost: data => dispatch(addPost(data)),
-    editPost: data => dispatch(editPost(data))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostForm)
+export default connect(mapStateToProps, { addPost, editPost })(PostForm)

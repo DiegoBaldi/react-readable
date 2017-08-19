@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { AppBar } from "material-ui"
 import CommentList from "./CommentList"
+import NotFoundElement from "./NotFoundElement"
 import { connect } from "react-redux"
 import uuidv4 from "../utils/uuid_gen"
 import { withRouter } from "react-router-dom"
@@ -45,9 +46,9 @@ class PostDetails extends Component {
   }
 
   render() {
-    const { post, history, upVote, downVote, remove } = this.props
+    const { post, history, upvotePost, downvotePost, removePost } = this.props
 
-    if (post) {
+    if (post && !post.deleted) {
       return (
         <div>
           <AppBar
@@ -76,7 +77,7 @@ class PostDetails extends Component {
                 <button
                   className="mdl-button mdl-js-button mdl-button--icon"
                   onClick={e => {
-                    remove(post.id, post.comments)
+                    removePost(post.id, post.comments)
                     history.push("/")
                   }}
                 >
@@ -102,7 +103,7 @@ class PostDetails extends Component {
               className="mdl-button mdl-js-button mdl-button--icon"
               onClick={e => {
                 e.stopPropagation()
-                downVote(post.id)
+                downvotePost(post.id)
               }}
             >
               <i className="material-icons downvote action">
@@ -116,7 +117,7 @@ class PostDetails extends Component {
               className="mdl-button mdl-js-button mdl-button--icon"
               onClick={e => {
                 e.stopPropagation()
-                upVote(post.id)
+                upvotePost(post.id)
               }}
             >
               <i className="material-icons upvote action">
@@ -127,6 +128,8 @@ class PostDetails extends Component {
           <CommentList history={history} postId={post.id} />
         </div>
       )
+    } else if(post && post.deleted) {
+      return <NotFoundElement />
     } else {
       return <div />
     }
@@ -139,14 +142,6 @@ function mapStateToProps({ posts }, ownProps) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    upVote: data => dispatch(upvotePost(data)),
-    downVote: data => dispatch(downvotePost(data)),
-    remove: (id, comments) => dispatch(removePost(id, comments))
-  }
-}
-
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PostDetails)
+  connect(mapStateToProps, {upvotePost, downvotePost, removePost})(PostDetails)
 )

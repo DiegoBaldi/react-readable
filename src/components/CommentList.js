@@ -4,15 +4,17 @@ import { Box } from "grid-styled"
 import ModalComment from "./ModalComment"
 import { connect } from "react-redux"
 import { addComment, editComment } from "../actions/comment_actions"
-import { changeCommentModalState, cycleCommentsOrderBySettings } from "../actions/settings_actions"
+import {
+  changeCommentModalState,
+  cycleCommentsOrderBySettings
+} from "../actions/settings_actions"
 import uuidv4 from "../utils/uuid_gen"
-import sortBy from 'sort-by';
-import { FlatButton } from "material-ui"
+import sortBy from "sort-by"
+import { AppBar, FlatButton } from "material-ui"
 
 class CommentList extends Component {
-
   cycleCommentOrderBy = () => {
-    this.props.cycleCommentOrderBy();
+    this.props.cycleCommentOrderBy()
   }
 
   openCommentModal = comment => {
@@ -55,7 +57,7 @@ class CommentList extends Component {
     const { comments, commentModal, orderBySettings } = this.props
     const orderByObj = orderBySettings.orderByTypes[orderBySettings.actualIndex]
     return (
-      <div style={{ padding: "24px" }}>
+      <div>
         <ModalComment
           isOpen={commentModal.isOpen}
           onRequestClose={this.closeCommentModal}
@@ -64,14 +66,31 @@ class CommentList extends Component {
           title={commentModal.title}
           comment={commentModal.comment}
         />
-        <h6>
-          <strong>Comments</strong>
-        </h6>
-        <FlatButton
-          style={{ width: "142px", color: "#00bcd4", margin: "7px 0px 0px 0px" }}
-          label={orderByObj.name}
-          icon={<i className="material-icons">sort</i>}
-          onClick={() => this.cycleCommentOrderBy()}
+        <AppBar
+          title="Comments"
+          style={{ zIndex: 3 }}
+          iconElementLeft={
+            <FlatButton
+              style={{
+                width: "142px",
+                color: "white",
+                margin: "7px 0px 0px 0px"
+              }}
+              label={orderByObj.name}
+              icon={<i className="material-icons">sort</i>}
+              onClick={() => this.cycleCommentOrderBy()}
+            />
+          }
+          iconElementRight={
+            <div style={{ padding: "8px", color: "white" }}>
+              <button
+                className="mdl-button mdl-js-button mdl-button--icon"
+                onClick={() => this.openCommentModal(null)}
+              >
+                <i className="material-icons action">add</i>
+              </button>
+            </div>
+          }
         />
         <div
           style={{ display: "flex", flexWrap: "wrap", marginBottom: "64px" }}
@@ -87,12 +106,6 @@ class CommentList extends Component {
             </Box>
           )}
         </div>
-        <button
-          className="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
-          onClick={() => this.openCommentModal(null)}
-        >
-          <i className="material-icons">add</i>
-        </button>
       </div>
     )
   }
@@ -110,17 +123,8 @@ function mapStateToProps({ comments, settings }, ownProps) {
       ),
 
     commentModal: settings.commentModal,
-    orderBySettings: settings.commentsSort  
+    orderBySettings: settings.commentsSort
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    addComment: data => dispatch(addComment(data)),
-    editComment: data => dispatch(editComment(data)),
-    changeModalState: data => dispatch(changeCommentModalState(data)),
-    cycleCommentOrderBy: () => dispatch(cycleCommentsOrderBySettings())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CommentList)
+export default connect(mapStateToProps, {addComment, editComment, changeModalState: changeCommentModalState, cycleCommentOrderBy: cycleCommentsOrderBySettings})(CommentList)

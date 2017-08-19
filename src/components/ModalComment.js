@@ -28,7 +28,7 @@ class ModalComment extends Component {
               marginLeft: "-171px",
               maxWidth: "300px",
               maxHeight: "400px",
-              bottom: "40px",
+              bottom: "40px"
             }
           }}
           isOpen={isOpen}

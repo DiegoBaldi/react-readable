@@ -75,15 +75,13 @@ function mapStateToProps({ posts, settings }) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    appLoaded: () => dispatch(appLoaded()),
-    fetchPosts: () => dispatch(fetchPosts()),
-    fetchComments: data => dispatch(fetchComments(data)),
-    fetchCategories: () => dispatch(fetchCategories()),
-    addPost: data => dispatch(addPost(data)),
-    editPost: data => dispatch(editPost(data))
-  }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(
+  connect(mapStateToProps, {
+    appLoaded,
+    fetchPosts,
+    fetchComments,
+    fetchCategories,
+    addPost,
+    editPost
+  })(App)
+)
